@@ -1,0 +1,437 @@
+PreTrainedModelClass <class 'transformers.models.roberta.modeling_roberta.RobertaPreTrainedModel'>
+ModelClass <class 'transformers.models.roberta.modeling_roberta.RobertaModel'>
+autodl-container-2bae408949-d9eac5da
+pid: 8907
+conda env: dragon
+screen: 
+
+gpu: 0
+
+torch version: 1.10.1+cu113
+torch cuda version: 11.3
+cuda is available: True
+cuda device count: 1
+cudnn version: 8200
+wandb id:  2j7uvl1p
+KG used: cpnet
+args: Namespace(att_head_num=2, batch_size=128, cuda=True, cxt_node_connects_all=False, data_dir='data', data_loader_one_process_at_a_time=False, dataset='riddle', debug=False, decoder_lr=0.001, dev_adj='data/riddle/graph/dev.graph.adj.pk', dev_statements='data/riddle/statement/dev.statement.jsonl', dropoutf=0.2, dropoutg=0.2, dropouti=0.2, dump_graph_cache=True, encoder='roberta-large', encoder_layer=-1, encoder_load_path='', encoder_lr=3e-05, end_task=1.0, ent_emb_paths=['data/cpnet/tzw.ent.npy'], eval_batch_size=2, fc_dim=200, fc_layer_num=0, fp16=True, freeze_ent_emb=True, gnn_dim=200, hf_version='4.9.1', ie_dim=400, ie_layer_num=1, info_exchange=True, inhouse=False, inhouse_train_qids='data/riddle/inhouse_split_qids.txt', init_range=0.02, k=5, kg='cpnet', kg_only_use_qa_nodes=False, kg_vocab_path='data/cpnet/concept.txt', link_decoder='DistMult', link_drop_max_count=100, link_drop_probability=0.2, link_drop_probability_in_which_keep=0.2, link_gamma=12, link_negative_adversarial_sampling=True, link_negative_adversarial_sampling_temperature=1, link_negative_sample_size=64, link_normalize_headtail=0, link_proj_headtail=False, link_regularizer_weight=0.01, link_task=0.0, load_graph_cache=True, load_model_path='models/general_model.pt', local_rank=-1, log_interval=10, loss='cross_entropy', lr_schedule='warmup_linear', max_epochs_before_stop=100, max_grad_norm=1.0, max_node_num=200, max_num_relation=-1, max_seq_len=100, mini_batch_size=2, mlm_probability=0.15, mlm_task=0.0, mode='train', n_epochs=34, n_train=-1, no_node_score=True, optim='radam', random_ent_emb=False, redef_epoch_steps=-1, refreeze_epoch=10000, residual_ie=2, resume_checkpoint='None', resume_id='None', run_name='dragon__riddle_ih_false_load__elr3e-5_dlr1e-3_b128_ufz2_e34_sd5__20231009_234317', save_dir='runs/riddle/dragon__riddle_ih_false_load__elr3e-5_dlr1e-3_b128_ufz2_e34_sd5__20231009_234317', save_model=0.0, scaled_distmult=False, seed=5, sep_ie_layers=False, span_mask=False, subsample=1.0, test_adj='data/riddle/graph/test.graph.adj.pk', test_statements='data/riddle/statement/test.statement.jsonl', train_adj='data/riddle/graph/train.graph.adj.pk', train_statements='data/riddle/statement/train.statement.jsonl', unfreeze_epoch=2, upcast=True, use_codalab=0, use_wandb=True, wandb_id='2j7uvl1p', warmup_steps=100.0, weight_decay=0.01, world_size=1)
+train_statement_path data/riddle/statement/train.statement.jsonl
+Loading cache data/riddle/statement/train.statement.jsonl-sl100.loaded_cache
+num_choice 5
+Loading sparse adj data...
+Loading cache data/riddle/graph/train.graph.adj.pk-nodenum200.loaded_cache
+| ori_adj_len: mu 166.65 sigma 171.63 | adj_len: 115.31 | prune_rate： 0.29 | qc_num: 9.65 | ac_num: 1.62 |
+Finish loading training data.
+Loading cache data/riddle/statement/dev.statement.jsonl-sl100.loaded_cache
+Loading sparse adj data...
+Loading cache data/riddle/graph/dev.graph.adj.pk-nodenum200.loaded_cache
+| ori_adj_len: mu 185.76 sigma 164.01 | adj_len: 129.78 | prune_rate： 0.35 | qc_num: 10.39 | ac_num: 1.49 |
+Finish loading dev data.
+Loading cache data/riddle/statement/test.statement.jsonl-sl100.loaded_cache
+Loading sparse adj data...
+Loading cache data/riddle/graph/test.graph.adj.pk-nodenum200.loaded_cache
+| ori_adj_len: mu 200.99 sigma 186.03 | adj_len: 131.92 | prune_rate： 0.38 | qc_num: 10.85 | ac_num: 1.47 |
+Finish loading test data.
+| num_concepts: 799273 |
+n_ntype 4 n_etype 38
+Non-loaded parameters: (91 modules)
+	lmgnn.concept_emb.emb.weight                 	fixed	torch.Size([799275, 1024])	device:cpu
+	lmgnn.concept_emb.cpt_transform.weight       	trainable	torch.Size([200, 1024])	device:cpu
+	lmgnn.concept_emb.cpt_transform.bias         	trainable	torch.Size([200])	device:cpu
+	lmgnn.pooler.w_qs.weight                     	trainable	torch.Size([200, 1024])	device:cpu
+	lmgnn.pooler.w_qs.bias                       	trainable	torch.Size([200])	device:cpu
+	lmgnn.pooler.w_ks.weight                     	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.pooler.w_ks.bias                       	trainable	torch.Size([200])	device:cpu
+	lmgnn.pooler.w_vs.weight                     	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.pooler.w_vs.bias                       	trainable	torch.Size([200])	device:cpu
+	lmgnn.fc.layers.0-Linear.weight              	trainable	torch.Size([1, 1424])	device:cpu
+	lmgnn.fc.layers.0-Linear.bias                	trainable	torch.Size([1])	device:cpu
+	lmgnn.roberta.encoder.edge_encoder.0.weight  	trainable	torch.Size([200, 47])	device:cpu
+	lmgnn.roberta.encoder.edge_encoder.0.bias    	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.edge_encoder.1.weight  	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.edge_encoder.1.bias    	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.edge_encoder.3.weight  	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.edge_encoder.3.bias    	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.mlp.0.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.mlp.0.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.mlp.1.weight	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.mlp.1.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.mlp.3.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.0.mlp.3.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.mlp.0.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.mlp.0.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.mlp.1.weight	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.mlp.1.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.mlp.3.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.1.mlp.3.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.mlp.0.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.mlp.0.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.mlp.1.weight	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.mlp.1.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.mlp.3.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.2.mlp.3.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.mlp.0.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.mlp.0.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.mlp.1.weight	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.mlp.1.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.mlp.3.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.3.mlp.3.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.mlp.0.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.mlp.0.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.mlp.1.weight	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.mlp.1.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.mlp.3.weight	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.encoder.gnn_layers.4.mlp.3.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.encoder.ie_layer.layers.0-Linear.weight	trainable	torch.Size([400, 1224])	device:cpu
+	lmgnn.roberta.encoder.ie_layer.layers.0-Linear.bias	trainable	torch.Size([400])	device:cpu
+	lmgnn.roberta.encoder.ie_layer.layers.1-Linear.weight	trainable	torch.Size([1224, 400])	device:cpu
+	lmgnn.roberta.encoder.ie_layer.layers.1-Linear.bias	trainable	torch.Size([1224])	device:cpu
+	lmgnn.roberta.encoder.ie_LayerNorm.weight    	trainable	torch.Size([1224])	device:cpu
+	lmgnn.roberta.encoder.ie_LayerNorm.bias      	trainable	torch.Size([1224])	device:cpu
+	lmgnn.roberta.emb_node_type.weight           	trainable	torch.Size([100, 4])	device:cpu
+	lmgnn.roberta.emb_node_type.bias             	trainable	torch.Size([100])	device:cpu
+	lmgnn.roberta.emb_score.weight               	trainable	torch.Size([100, 100])	device:cpu
+	lmgnn.roberta.emb_score.bias                 	trainable	torch.Size([100])	device:cpu
+	lmgnn.roberta.Vh.weight                      	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.Vh.bias                        	trainable	torch.Size([200])	device:cpu
+	lmgnn.roberta.Vx.weight                      	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.roberta.Vx.bias                        	trainable	torch.Size([200])	device:cpu
+num_trainable_params (out of not_loaded_params): 3623297
+num_fixed_params (out of not_loaded_params): 818457600
+num_loaded_params: 355359744
+num_total_params: 1177440641
+loading and initializing model from models/general_model.pt
+
+-----------------------------------------------------------------------
+Using fp16 training
+Upcast True
+end_task 1.0 mlm_task 0.0 link_task 0.0
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [923, 1390, 3163, 2378, 572, 573, 2756, 2774, 2899, 2421]
+| step     9 |  lr: 0.0000030 | total loss  1.6226 | ms/batch 6631.01 |
+| step    19 |  lr: 0.0000060 | total loss  1.6219 | ms/batch 5345.22 |
+dev_acc 0.17221135029354206
+test_acc 0.1627450980392157
+-----------------------------------------------------------------------
+| epoch   0 | step    28 | dev_acc  0.1722 | test_acc  0.1627 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1513, 2391, 2057, 350, 1451, 1612, 998, 468, 422, 2117]
+| step    29 |  lr: 0.0000090 | total loss  1.6210 | ms/batch 4969.27 |
+| step    39 |  lr: 0.0000120 | total loss  1.6211 | ms/batch 5362.14 |
+| step    49 |  lr: 0.0000150 | total loss  1.5970 | ms/batch 5296.13 |
+dev_acc 0.19960861056751467
+test_acc 0.16862745098039217
+-----------------------------------------------------------------------
+| epoch   1 | step    56 | dev_acc  0.1996 | test_acc  0.1686 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [3146, 1389, 887, 2083, 920, 1321, 2882, 1961, 2931, 645]
+| step    59 |  lr: 0.0000180 | total loss  1.5941 | ms/batch 6261.74 |
+| step    69 |  lr: 0.0000210 | total loss  1.5532 | ms/batch 8190.51 |
+| step    79 |  lr: 0.0000240 | total loss  1.5494 | ms/batch 8199.21 |
+dev_acc 0.1898238747553816
+test_acc 0.17450980392156862
+-----------------------------------------------------------------------
+| epoch   2 | step    84 | dev_acc  0.1898 | test_acc  0.1745 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2699, 617, 2125, 2046, 556, 1562, 750, 1659, 2309, 610]
+| step    89 |  lr: 0.0000270 | total loss  1.5085 | ms/batch 7383.56 |
+| step    99 |  lr: 0.0000300 | total loss  1.4812 | ms/batch 7715.16 |
+| step   109 |  lr: 0.0000296 | total loss  1.3677 | ms/batch 7860.52 |
+dev_acc 0.18786692759295498
+test_acc 0.19607843137254902
+-----------------------------------------------------------------------
+| epoch   3 | step   112 | dev_acc  0.1879 | test_acc  0.1961 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [920, 2059, 2271, 1327, 2146, 1473, 1452, 2155, 392, 2057]
+| step   119 |  lr: 0.0000293 | total loss  1.2395 | ms/batch 7418.06 |
+| step   129 |  lr: 0.0000289 | total loss  1.0939 | ms/batch 8097.63 |
+| step   139 |  lr: 0.0000286 | total loss  0.9838 | ms/batch 7626.03 |
+dev_acc 0.3268101761252446
+test_acc 0.3156862745098039
+-----------------------------------------------------------------------
+| epoch   4 | step   140 | dev_acc  0.3268 | test_acc  0.3157 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2127, 1367, 1331, 1679, 1858, 1235, 839, 544, 2544, 816]
+| step   149 |  lr: 0.0000282 | total loss  0.9071 | ms/batch 7906.75 |
+| step   159 |  lr: 0.0000278 | total loss  0.7806 | ms/batch 7843.19 |
+dev_acc 0.50293542074364
+test_acc 0.5117647058823529
+-----------------------------------------------------------------------
+| epoch   5 | step   168 | dev_acc  0.5029 | test_acc  0.5118 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1826, 1519, 2344, 1408, 1296, 3266, 2679, 1118, 807, 1059]
+| step   169 |  lr: 0.0000275 | total loss  0.7250 | ms/batch 7522.80 |
+| step   179 |  lr: 0.0000271 | total loss  0.6294 | ms/batch 7887.41 |
+| step   189 |  lr: 0.0000268 | total loss  0.6202 | ms/batch 7842.67 |
+dev_acc 0.5929549902152642
+test_acc 0.6098039215686275
+-----------------------------------------------------------------------
+| epoch   6 | step   196 | dev_acc  0.5930 | test_acc  0.6098 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [3462, 530, 1785, 2161, 1360, 2150, 1871, 1192, 788, 745]
+| step   199 |  lr: 0.0000264 | total loss  0.5356 | ms/batch 7462.22 |
+| step   209 |  lr: 0.0000260 | total loss  0.4688 | ms/batch 8075.64 |
+| step   219 |  lr: 0.0000257 | total loss  0.4697 | ms/batch 7875.95 |
+dev_acc 0.6320939334637965
+test_acc 0.6392156862745098
+-----------------------------------------------------------------------
+| epoch   7 | step   224 | dev_acc  0.6321 | test_acc  0.6392 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2394, 3298, 679, 442, 1663, 1031, 214, 2135, 490, 986]
+| step   229 |  lr: 0.0000253 | total loss  0.4366 | ms/batch 7164.54 |
+| step   239 |  lr: 0.0000250 | total loss  0.3383 | ms/batch 7631.96 |
+| step   249 |  lr: 0.0000246 | total loss  0.3448 | ms/batch 7679.17 |
+dev_acc 0.6673189823874756
+test_acc 0.6568627450980392
+-----------------------------------------------------------------------
+| epoch   8 | step   252 | dev_acc  0.6673 | test_acc  0.6569 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [248, 761, 2699, 1293, 432, 2679, 630, 2396, 990, 2176]
+| step   259 |  lr: 0.0000242 | total loss  0.2864 | ms/batch 7269.41 |
+| step   269 |  lr: 0.0000239 | total loss  0.2824 | ms/batch 7594.55 |
+| step   279 |  lr: 0.0000235 | total loss  0.2928 | ms/batch 7254.72 |
+dev_acc 0.6829745596868885
+test_acc 0.6705882352941176
+-----------------------------------------------------------------------
+| epoch   9 | step   280 | dev_acc  0.6830 | test_acc  0.6706 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [8, 2906, 1902, 1398, 1553, 620, 1850, 1597, 227, 866]
+| step   289 |  lr: 0.0000231 | total loss  0.2269 | ms/batch 7613.71 |
+| step   299 |  lr: 0.0000228 | total loss  0.2213 | ms/batch 7745.63 |
+dev_acc 0.6790606653620352
+test_acc 0.6862745098039216
+-----------------------------------------------------------------------
+| epoch  10 | step   308 | dev_acc  0.6791 | test_acc  0.6863 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1313, 1100, 1220, 277, 507, 52, 586, 325, 3062, 3349]
+| step   309 |  lr: 0.0000224 | total loss  0.1986 | ms/batch 7440.58 |
+| step   319 |  lr: 0.0000221 | total loss  0.1725 | ms/batch 7903.73 |
+| step   329 |  lr: 0.0000217 | total loss  0.1837 | ms/batch 7811.95 |
+dev_acc 0.6712328767123288
+test_acc 0.6862745098039216
+-----------------------------------------------------------------------
+| epoch  11 | step   336 | dev_acc  0.6712 | test_acc  0.6863 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1646, 1419, 3359, 1469, 3306, 3427, 2158, 1296, 2614, 2027]
+| step   339 |  lr: 0.0000213 | total loss  0.1312 | ms/batch 7603.94 |
+| step   349 |  lr: 0.0000210 | total loss  0.1201 | ms/batch 7808.57 |
+| step   359 |  lr: 0.0000206 | total loss  0.1529 | ms/batch 7825.38 |
+dev_acc 0.6575342465753424
+test_acc 0.6862745098039216
+-----------------------------------------------------------------------
+| epoch  12 | step   364 | dev_acc  0.6575 | test_acc  0.6863 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1056, 2941, 2985, 2876, 1333, 202, 3133, 496, 3369, 1757]
+| step   369 |  lr: 0.0000203 | total loss  0.1111 | ms/batch 7341.99 |
+| step   379 |  lr: 0.0000199 | total loss  0.1187 | ms/batch 7890.35 |
+| step   389 |  lr: 0.0000195 | total loss  0.0973 | ms/batch 7752.45 |
+dev_acc 0.6575342465753424
+test_acc 0.6725490196078432
+-----------------------------------------------------------------------
+| epoch  13 | step   392 | dev_acc  0.6575 | test_acc  0.6725 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [459, 2604, 2692, 2941, 1121, 1184, 540, 1092, 1837, 866]
+| step   399 |  lr: 0.0000192 | total loss  0.0683 | ms/batch 7422.12 |
+| step   409 |  lr: 0.0000188 | total loss  0.0833 | ms/batch 7881.23 |
+| step   419 |  lr: 0.0000185 | total loss  0.0708 | ms/batch 7470.69 |
+dev_acc 0.6575342465753424
+test_acc 0.6980392156862745
+-----------------------------------------------------------------------
+| epoch  14 | step   420 | dev_acc  0.6575 | test_acc  0.6980 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2767, 1352, 1204, 329, 1198, 852, 2567, 3157, 1922, 2352]
+| step   429 |  lr: 0.0000181 | total loss  0.0848 | ms/batch 7804.38 |
+| step   439 |  lr: 0.0000177 | total loss  0.0591 | ms/batch 7986.70 |
+dev_acc 0.675146771037182
+test_acc 0.7
+-----------------------------------------------------------------------
+| epoch  15 | step   448 | dev_acc  0.6751 | test_acc  0.7000 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2217, 2986, 2960, 904, 1119, 91, 2548, 252, 117, 1152]
+| step   449 |  lr: 0.0000174 | total loss  0.0584 | ms/batch 7660.67 |
+| step   459 |  lr: 0.0000170 | total loss  0.0672 | ms/batch 8142.81 |
+| step   469 |  lr: 0.0000167 | total loss  0.0397 | ms/batch 8088.98 |
+dev_acc 0.6555772994129159
+test_acc 0.6843137254901961
+-----------------------------------------------------------------------
+| epoch  16 | step   476 | dev_acc  0.6556 | test_acc  0.6843 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2315, 300, 597, 2986, 1862, 3143, 1021, 61, 1799, 1196]
+| step   479 |  lr: 0.0000163 | total loss  0.0419 | ms/batch 7599.84 |
+| step   489 |  lr: 0.0000159 | total loss  0.0425 | ms/batch 7941.29 |
+| step   499 |  lr: 0.0000156 | total loss  0.0479 | ms/batch 7868.66 |
+dev_acc 0.6712328767123288
+test_acc 0.6901960784313725
+-----------------------------------------------------------------------
+| epoch  17 | step   504 | dev_acc  0.6712 | test_acc  0.6902 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [71, 3485, 457, 2468, 2414, 3321, 645, 763, 1513, 2877]
+| step   509 |  lr: 0.0000152 | total loss  0.0384 | ms/batch 7367.72 |
+| step   519 |  lr: 0.0000149 | total loss  0.0303 | ms/batch 7503.72 |
+| step   529 |  lr: 0.0000145 | total loss  0.0534 | ms/batch 7437.77 |
+dev_acc 0.6810176125244618
+test_acc 0.703921568627451
+-----------------------------------------------------------------------
+| epoch  18 | step   532 | dev_acc  0.6810 | test_acc  0.7039 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1875, 1869, 2145, 1181, 2820, 2388, 2871, 1757, 3430, 1898]
+| step   539 |  lr: 0.0000141 | total loss  0.0171 | ms/batch 6946.44 |
+| step   549 |  lr: 0.0000138 | total loss  0.0374 | ms/batch 7517.40 |
+| step   559 |  lr: 0.0000134 | total loss  0.0495 | ms/batch 7057.43 |
+dev_acc 0.6731898238747553
+test_acc 0.7019607843137254
+-----------------------------------------------------------------------
+| epoch  19 | step   560 | dev_acc  0.6732 | test_acc  0.7020 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [783, 200, 1202, 1503, 1648, 1920, 1281, 3243, 1006, 119]
+| step   569 |  lr: 0.0000131 | total loss  0.0187 | ms/batch 7513.97 |
+| step   579 |  lr: 0.0000127 | total loss  0.0353 | ms/batch 7496.72 |
+dev_acc 0.6516634050880626
+test_acc 0.6823529411764706
+-----------------------------------------------------------------------
+| epoch  20 | step   588 | dev_acc  0.6517 | test_acc  0.6824 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1580, 1345, 2222, 2515, 1945, 994, 1589, 3005, 279, 1245]
+| step   589 |  lr: 0.0000123 | total loss  0.0229 | ms/batch 7107.48 |
+| step   599 |  lr: 0.0000120 | total loss  0.0203 | ms/batch 7534.81 |
+| step   609 |  lr: 0.0000116 | total loss  0.0168 | ms/batch 7469.95 |
+dev_acc 0.6947162426614482
+test_acc 0.7098039215686275
+-----------------------------------------------------------------------
+| epoch  21 | step   616 | dev_acc  0.6947 | test_acc  0.7098 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [883, 2758, 3106, 2918, 992, 2659, 1536, 3303, 3279, 170]
+| step   619 |  lr: 0.0000113 | total loss  0.0175 | ms/batch 7039.75 |
+| step   629 |  lr: 0.0000109 | total loss  0.0151 | ms/batch 7506.73 |
+| step   639 |  lr: 0.0000105 | total loss  0.0112 | ms/batch 7611.30 |
+dev_acc 0.6829745596868885
+test_acc 0.703921568627451
+-----------------------------------------------------------------------
+| epoch  22 | step   644 | dev_acc  0.6830 | test_acc  0.7039 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2636, 770, 3075, 297, 224, 1193, 433, 3181, 7, 388]
+| step   649 |  lr: 0.0000102 | total loss  0.0165 | ms/batch 7268.99 |
+| step   659 |  lr: 0.0000098 | total loss  0.0161 | ms/batch 7700.76 |
+| step   669 |  lr: 0.0000094 | total loss  0.0163 | ms/batch 7730.89 |
+dev_acc 0.6614481409001957
+test_acc 0.6764705882352942
+-----------------------------------------------------------------------
+| epoch  23 | step   672 | dev_acc  0.6614 | test_acc  0.6765 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2105, 2412, 3167, 2956, 879, 2055, 1496, 885, 2283, 1979]
+| step   679 |  lr: 0.0000091 | total loss  0.0207 | ms/batch 6992.86 |
+| step   689 |  lr: 0.0000087 | total loss  0.0045 | ms/batch 7731.30 |
+| step   699 |  lr: 0.0000084 | total loss  0.0281 | ms/batch 7198.28 |
+dev_acc 0.6790606653620352
+test_acc 0.7019607843137254
+-----------------------------------------------------------------------
+| epoch  24 | step   700 | dev_acc  0.6791 | test_acc  0.7020 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1304, 3068, 827, 565, 2537, 427, 2919, 56, 768, 225]
+| step   709 |  lr: 0.0000080 | total loss  0.0224 | ms/batch 7663.35 |
+| step   719 |  lr: 0.0000076 | total loss  0.0108 | ms/batch 7565.25 |
+dev_acc 0.684931506849315
+test_acc 0.7058823529411765
+-----------------------------------------------------------------------
+| epoch  25 | step   728 | dev_acc  0.6849 | test_acc  0.7059 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [414, 1833, 2024, 1163, 3184, 2913, 904, 7, 1000, 3076]
+| step   729 |  lr: 0.0000073 | total loss  0.0054 | ms/batch 7208.69 |
+| step   739 |  lr: 0.0000069 | total loss  0.0081 | ms/batch 7683.47 |
+| step   749 |  lr: 0.0000066 | total loss  0.0069 | ms/batch 7587.68 |
+dev_acc 0.6810176125244618
+test_acc 0.711764705882353
+-----------------------------------------------------------------------
+| epoch  26 | step   756 | dev_acc  0.6810 | test_acc  0.7118 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [3135, 968, 2514, 2006, 1964, 3144, 2414, 2877, 2823, 843]
+| step   759 |  lr: 0.0000062 | total loss  0.0111 | ms/batch 7102.22 |
+| step   769 |  lr: 0.0000058 | total loss  0.0075 | ms/batch 7391.62 |
+| step   779 |  lr: 0.0000055 | total loss  0.0072 | ms/batch 7578.20 |
+dev_acc 0.6868884540117417
+test_acc 0.711764705882353
+-----------------------------------------------------------------------
+| epoch  27 | step   784 | dev_acc  0.6869 | test_acc  0.7118 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2305, 1885, 1704, 315, 938, 1507, 1046, 1795, 314, 258]
+| step   789 |  lr: 0.0000051 | total loss  0.0205 | ms/batch 7109.69 |
+| step   799 |  lr: 0.0000048 | total loss  0.0143 | ms/batch 7637.21 |
+| step   809 |  lr: 0.0000044 | total loss  0.0071 | ms/batch 7572.66 |
+dev_acc 0.6986301369863014
+test_acc 0.7098039215686275
+-----------------------------------------------------------------------
+| epoch  28 | step   812 | dev_acc  0.6986 | test_acc  0.7098 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2671, 672, 3077, 3028, 2520, 861, 60, 1004, 1952, 1723]
+| step   819 |  lr: 0.0000040 | total loss  0.0104 | ms/batch 7197.31 |
+| step   829 |  lr: 0.0000037 | total loss  0.0089 | ms/batch 7600.42 |
+| step   839 |  lr: 0.0000033 | total loss  0.0059 | ms/batch 7093.66 |
+dev_acc 0.6986301369863014
+test_acc 0.7215686274509804
+-----------------------------------------------------------------------
+| epoch  29 | step   840 | dev_acc  0.6986 | test_acc  0.7216 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [3346, 80, 326, 269, 3248, 1897, 3100, 375, 1171, 2126]
+| step   849 |  lr: 0.0000030 | total loss  0.0058 | ms/batch 7463.44 |
+| step   859 |  lr: 0.0000026 | total loss  0.0072 | ms/batch 7496.85 |
+dev_acc 0.700587084148728
+test_acc 0.7215686274509804
+-----------------------------------------------------------------------
+| epoch  30 | step   868 | dev_acc  0.7006 | test_acc  0.7216 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [2699, 702, 107, 1207, 24, 993, 1991, 132, 928, 2801]
+| step   869 |  lr: 0.0000022 | total loss  0.0034 | ms/batch 7070.44 |
+| step   879 |  lr: 0.0000019 | total loss  0.0056 | ms/batch 7516.38 |
+| step   889 |  lr: 0.0000015 | total loss  0.0080 | ms/batch 7404.76 |
+dev_acc 0.700587084148728
+test_acc 0.7235294117647059
+-----------------------------------------------------------------------
+| epoch  31 | step   896 | dev_acc  0.7006 | test_acc  0.7235 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [598, 96, 1060, 2742, 2753, 1069, 62, 861, 3164, 865]
+| step   899 |  lr: 0.0000012 | total loss  0.0159 | ms/batch 7026.20 |
+| step   909 |  lr: 0.0000008 | total loss  0.0075 | ms/batch 7478.55 |
+| step   919 |  lr: 0.0000004 | total loss  0.0050 | ms/batch 7425.21 |
+dev_acc 0.700587084148728
+test_acc 0.7196078431372549
+-----------------------------------------------------------------------
+| epoch  32 | step   924 | dev_acc  0.7006 | test_acc  0.7196 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 3510 train_indexes[:10] [1026, 2983, 2982, 889, 1816, 656, 3135, 1403, 271, 387]
+| step   929 |  lr: 0.0000001 | total loss  0.0040 | ms/batch 7048.57 |
+| step   939 |  lr: 0.0000000 | total loss  0.0028 | ms/batch 7561.57 |
+| step   949 |  lr: 0.0000000 | total loss  0.0064 | ms/batch 7529.41 |
+dev_acc 0.700587084148728
+test_acc 0.7274509803921568
+-----------------------------------------------------------------------
+| epoch  33 | step   952 | dev_acc  0.7006 | test_acc  0.7275 |
+-----------------------------------------------------------------------

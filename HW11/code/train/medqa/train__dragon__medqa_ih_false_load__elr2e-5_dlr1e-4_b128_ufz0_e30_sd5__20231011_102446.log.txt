@@ -1,0 +1,561 @@
+PreTrainedModelClass <class 'transformers.models.bert.modeling_bert.BertPreTrainedModel'>
+ModelClass <class 'transformers.models.bert.modeling_bert.BertModel'>
+autodl-container-645f11a73c-e71b4666
+pid: 1263
+conda env: dragon
+screen: 
+
+gpu: 0
+
+torch version: 1.10.1+cu113
+torch cuda version: 11.3
+cuda is available: True
+cuda device count: 1
+cudnn version: 8200
+wandb id:  x3bzwtzu
+KG used: umls
+args: Namespace(att_head_num=2, batch_size=128, cuda=True, cxt_node_connects_all=False, data_dir='data', data_loader_one_process_at_a_time=False, dataset='medqa', debug=False, decoder_lr=0.0001, dev_adj='data/medqa/graph/dev.graph.adj.pk', dev_statements='data/medqa/statement/dev.statement.jsonl', dropoutf=0.2, dropoutg=0.2, dropouti=0.2, dump_graph_cache=True, encoder='michiyasunaga/BioLinkBERT-large', encoder_layer=-1, encoder_load_path='', encoder_lr=2e-05, end_task=1.0, ent_emb_paths=['data/umls/ent_emb_blbertL.npy'], eval_batch_size=2, fc_dim=200, fc_layer_num=0, fp16=True, freeze_ent_emb=True, gnn_dim=200, hf_version='4.9.1', ie_dim=400, ie_layer_num=1, info_exchange=True, inhouse=False, inhouse_train_qids='data/medqa/inhouse_split_qids.txt', init_range=0.02, k=5, kg='umls', kg_only_use_qa_nodes=False, kg_vocab_path='data/umls/concepts.txt', link_decoder='DistMult', link_drop_max_count=100, link_drop_probability=0.2, link_drop_probability_in_which_keep=0.2, link_gamma=12, link_negative_adversarial_sampling=True, link_negative_adversarial_sampling_temperature=1, link_negative_sample_size=64, link_normalize_headtail=0, link_proj_headtail=False, link_regularizer_weight=0.01, link_task=0.0, load_graph_cache=True, load_model_path='models/biomed_model.pt', local_rank=-1, log_interval=10, loss='cross_entropy', lr_schedule='warmup_linear', max_epochs_before_stop=100, max_grad_norm=1.0, max_node_num=200, max_num_relation=-1, max_seq_len=512, mini_batch_size=1, mlm_probability=0.15, mlm_task=0.0, mode='train', n_epochs=30, n_train=-1, no_node_score=True, optim='radam', random_ent_emb=False, redef_epoch_steps=-1, refreeze_epoch=10000, residual_ie=2, resume_checkpoint='None', resume_id='None', run_name='dragon__medqa_ih_false_load__elr2e-5_dlr1e-4_b128_ufz0_e30_sd5__20231011_102446', save_dir='runs/medqa/dragon__medqa_ih_false_load__elr2e-5_dlr1e-4_b128_ufz0_e30_sd5__20231011_102446', save_model=0.0, scaled_distmult=False, seed=5, sep_ie_layers=False, span_mask=False, subsample=1.0, test_adj='data/medqa/graph/test.graph.adj.pk', test_statements='data/medqa/statement/test.statement.jsonl', train_adj='data/medqa/graph/train.graph.adj.pk', train_statements='data/medqa/statement/train.statement.jsonl', unfreeze_epoch=0, upcast=True, use_codalab=0, use_wandb=True, wandb_id='x3bzwtzu', warmup_steps=500.0, weight_decay=0.01, world_size=1)
+train_statement_path data/medqa/statement/train.statement.jsonl
+Loading cache data/medqa/statement/train.statement.jsonl-sl512-bert.loaded_cache
+num_choice 4
+Loading sparse adj data...
+Loading cache data/medqa/graph/train.graph.adj.pk-nodenum200.loaded_cache
+| ori_adj_len: mu 297.77 sigma 264.97 | adj_len: 147.16 | prune_rate： 0.53 | qc_num: 28.09 | ac_num: 1.54 |
+Finish loading training data.
+Loading cache data/medqa/statement/dev.statement.jsonl-sl512-bert.loaded_cache
+Loading sparse adj data...
+Loading cache data/medqa/graph/dev.graph.adj.pk-nodenum200.loaded_cache
+| ori_adj_len: mu 292.99 sigma 262.16 | adj_len: 146.18 | prune_rate： 0.52 | qc_num: 27.66 | ac_num: 1.52 |
+Finish loading dev data.
+Loading cache data/medqa/statement/test.statement.jsonl-sl512-bert.loaded_cache
+Loading sparse adj data...
+Loading cache data/medqa/graph/test.graph.adj.pk-nodenum200.loaded_cache
+| ori_adj_len: mu 295.99 sigma 254.16 | adj_len: 149.21 | prune_rate： 0.54 | qc_num: 28.73 | ac_num: 1.50 |
+Finish loading test data.
+| num_concepts: 297927 |
+final_num_relation 100 len(id2relation) 98
+n_ntype 4 n_etype 200
+All model checkpoint weights were used when initializing LMGNN.
+
+Non-loaded parameters: (91 modules)
+	lmgnn.concept_emb.emb.weight                 	fixed	torch.Size([297929, 1024])	device:cpu
+	lmgnn.concept_emb.cpt_transform.weight       	trainable	torch.Size([200, 1024])	device:cpu
+	lmgnn.concept_emb.cpt_transform.bias         	trainable	torch.Size([200])	device:cpu
+	lmgnn.pooler.w_qs.weight                     	trainable	torch.Size([200, 1024])	device:cpu
+	lmgnn.pooler.w_qs.bias                       	trainable	torch.Size([200])	device:cpu
+	lmgnn.pooler.w_ks.weight                     	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.pooler.w_ks.bias                       	trainable	torch.Size([200])	device:cpu
+	lmgnn.pooler.w_vs.weight                     	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.pooler.w_vs.bias                       	trainable	torch.Size([200])	device:cpu
+	lmgnn.fc.layers.0-Linear.weight              	trainable	torch.Size([1, 1424])	device:cpu
+	lmgnn.fc.layers.0-Linear.bias                	trainable	torch.Size([1])	device:cpu
+	lmgnn.bert.encoder.edge_encoder.0.weight     	trainable	torch.Size([200, 209])	device:cpu
+	lmgnn.bert.encoder.edge_encoder.0.bias       	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.edge_encoder.1.weight     	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.edge_encoder.1.bias       	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.edge_encoder.3.weight     	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.edge_encoder.3.bias       	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.mlp.0.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.mlp.0.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.mlp.1.weight 	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.mlp.1.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.mlp.3.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.0.mlp.3.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.mlp.0.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.mlp.0.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.mlp.1.weight 	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.mlp.1.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.mlp.3.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.1.mlp.3.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.mlp.0.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.mlp.0.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.mlp.1.weight 	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.mlp.1.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.mlp.3.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.2.mlp.3.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.mlp.0.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.mlp.0.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.mlp.1.weight 	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.mlp.1.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.mlp.3.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.3.mlp.3.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.linear_key.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.linear_key.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.linear_msg.weight	trainable	torch.Size([200, 600])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.linear_msg.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.linear_query.weight	trainable	torch.Size([200, 400])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.linear_query.bias	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.mlp.0.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.mlp.0.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.mlp.1.weight 	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.mlp.1.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.mlp.3.weight 	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.encoder.gnn_layers.4.mlp.3.bias   	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.encoder.ie_layer.layers.0-Linear.weight	trainable	torch.Size([400, 1224])	device:cpu
+	lmgnn.bert.encoder.ie_layer.layers.0-Linear.bias	trainable	torch.Size([400])	device:cpu
+	lmgnn.bert.encoder.ie_layer.layers.1-Linear.weight	trainable	torch.Size([1224, 400])	device:cpu
+	lmgnn.bert.encoder.ie_layer.layers.1-Linear.bias	trainable	torch.Size([1224])	device:cpu
+	lmgnn.bert.encoder.ie_LayerNorm.weight       	trainable	torch.Size([1224])	device:cpu
+	lmgnn.bert.encoder.ie_LayerNorm.bias         	trainable	torch.Size([1224])	device:cpu
+	lmgnn.bert.emb_node_type.weight              	trainable	torch.Size([100, 4])	device:cpu
+	lmgnn.bert.emb_node_type.bias                	trainable	torch.Size([100])	device:cpu
+	lmgnn.bert.emb_score.weight                  	trainable	torch.Size([100, 100])	device:cpu
+	lmgnn.bert.emb_score.bias                    	trainable	torch.Size([100])	device:cpu
+	lmgnn.bert.Vh.weight                         	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.Vh.bias                           	trainable	torch.Size([200])	device:cpu
+	lmgnn.bert.Vx.weight                         	trainable	torch.Size([200, 200])	device:cpu
+	lmgnn.bert.Vx.bias                           	trainable	torch.Size([200])	device:cpu
+num_trainable_params (out of not_loaded_params): 3655697
+num_fixed_params (out of not_loaded_params): 305079296
+num_loaded_params: 333475840
+num_total_params: 642210833
+loading and initializing model from models/biomed_model.pt
+
+-----------------------------------------------------------------------
+Using fp16 training
+Upcast True
+end_task 1.0 mlm_task 0.0 link_task 0.0
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [5789, 3311, 2218, 3100, 103, 7885, 1456, 4082, 5052, 6344]
+| step     9 |  lr: 0.0000004 | total loss  1.4170 | ms/batch 26972.38 |
+| step    19 |  lr: 0.0000008 | total loss  1.4137 | ms/batch 25715.28 |
+| step    29 |  lr: 0.0000012 | total loss  1.4260 | ms/batch 25685.12 |
+| step    39 |  lr: 0.0000016 | total loss  1.4203 | ms/batch 25684.82 |
+| step    49 |  lr: 0.0000020 | total loss  1.4230 | ms/batch 25703.04 |
+| step    59 |  lr: 0.0000024 | total loss  1.4219 | ms/batch 25662.67 |
+| step    69 |  lr: 0.0000028 | total loss  1.4224 | ms/batch 25760.55 |
+| step    79 |  lr: 0.0000032 | total loss  1.4139 | ms/batch 24399.64 |
+dev_acc 0.25707547169811323
+test_acc 0.24116260801256872
+-----------------------------------------------------------------------
+| epoch   0 | step    80 | dev_acc  0.2571 | test_acc  0.2412 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [4685, 6697, 2107, 628, 5816, 4745, 1856, 6662, 6246, 6851]
+| step    89 |  lr: 0.0000036 | total loss  1.4336 | ms/batch 25645.19 |
+| step    99 |  lr: 0.0000040 | total loss  1.4192 | ms/batch 25646.34 |
+| step   109 |  lr: 0.0000044 | total loss  1.4215 | ms/batch 25630.51 |
+| step   119 |  lr: 0.0000048 | total loss  1.4112 | ms/batch 25661.70 |
+| step   129 |  lr: 0.0000052 | total loss  1.4066 | ms/batch 25634.68 |
+| step   139 |  lr: 0.0000056 | total loss  1.4277 | ms/batch 25638.39 |
+| step   149 |  lr: 0.0000060 | total loss  1.4120 | ms/batch 25668.02 |
+| step   159 |  lr: 0.0000064 | total loss  1.4217 | ms/batch 24389.44 |
+dev_acc 0.2610062893081761
+test_acc 0.2513747054202671
+-----------------------------------------------------------------------
+| epoch   1 | step   160 | dev_acc  0.2610 | test_acc  0.2514 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [1304, 6651, 1831, 8830, 5785, 9592, 8030, 4372, 1421, 10120]
+| step   169 |  lr: 0.0000068 | total loss  1.4080 | ms/batch 25674.46 |
+| step   179 |  lr: 0.0000072 | total loss  1.4054 | ms/batch 25644.72 |
+| step   189 |  lr: 0.0000076 | total loss  1.4238 | ms/batch 25774.59 |
+| step   199 |  lr: 0.0000080 | total loss  1.4176 | ms/batch 25846.92 |
+| step   209 |  lr: 0.0000084 | total loss  1.4074 | ms/batch 25781.43 |
+| step   219 |  lr: 0.0000088 | total loss  1.4139 | ms/batch 25752.03 |
+| step   229 |  lr: 0.0000092 | total loss  1.4075 | ms/batch 25768.10 |
+| step   239 |  lr: 0.0000096 | total loss  1.3979 | ms/batch 24491.38 |
+dev_acc 0.26572327044025157
+test_acc 0.24823252160251374
+-----------------------------------------------------------------------
+| epoch   2 | step   240 | dev_acc  0.2657 | test_acc  0.2482 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [7921, 6528, 5400, 9097, 9635, 5479, 240, 1253, 6707, 2953]
+| step   249 |  lr: 0.0000100 | total loss  1.4068 | ms/batch 25707.43 |
+| step   259 |  lr: 0.0000104 | total loss  1.4134 | ms/batch 25721.75 |
+| step   269 |  lr: 0.0000108 | total loss  1.4083 | ms/batch 25783.99 |
+| step   279 |  lr: 0.0000112 | total loss  1.4150 | ms/batch 25707.90 |
+| step   289 |  lr: 0.0000116 | total loss  1.4161 | ms/batch 25721.38 |
+| step   299 |  lr: 0.0000120 | total loss  1.4071 | ms/batch 25693.65 |
+| step   309 |  lr: 0.0000124 | total loss  1.4006 | ms/batch 25813.47 |
+| step   319 |  lr: 0.0000128 | total loss  1.4072 | ms/batch 24483.90 |
+dev_acc 0.2539308176100629
+test_acc 0.27729772191673213
+-----------------------------------------------------------------------
+| epoch   3 | step   320 | dev_acc  0.2539 | test_acc  0.2773 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [5382, 2868, 8268, 7083, 5948, 2930, 1197, 8892, 1944, 5215]
+| step   329 |  lr: 0.0000132 | total loss  1.4119 | ms/batch 25623.83 |
+| step   339 |  lr: 0.0000136 | total loss  1.4125 | ms/batch 25607.90 |
+| step   349 |  lr: 0.0000140 | total loss  1.4144 | ms/batch 25640.17 |
+| step   359 |  lr: 0.0000144 | total loss  1.4189 | ms/batch 25622.61 |
+| step   369 |  lr: 0.0000148 | total loss  1.3939 | ms/batch 25622.35 |
+| step   379 |  lr: 0.0000152 | total loss  1.4027 | ms/batch 25668.77 |
+| step   389 |  lr: 0.0000156 | total loss  1.4066 | ms/batch 25718.03 |
+| step   399 |  lr: 0.0000160 | total loss  1.4095 | ms/batch 24475.33 |
+dev_acc 0.2531446540880503
+test_acc 0.27729772191673213
+-----------------------------------------------------------------------
+| epoch   4 | step   400 | dev_acc  0.2531 | test_acc  0.2773 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [5646, 4026, 24, 4815, 6622, 8152, 3997, 9541, 3014, 122]
+| step   409 |  lr: 0.0000164 | total loss  1.4172 | ms/batch 25686.60 |
+| step   419 |  lr: 0.0000168 | total loss  1.4063 | ms/batch 25655.94 |
+| step   429 |  lr: 0.0000172 | total loss  1.4087 | ms/batch 25640.77 |
+| step   439 |  lr: 0.0000176 | total loss  1.3994 | ms/batch 25677.79 |
+| step   449 |  lr: 0.0000180 | total loss  1.3989 | ms/batch 25714.14 |
+| step   459 |  lr: 0.0000184 | total loss  1.4066 | ms/batch 25672.04 |
+| step   469 |  lr: 0.0000188 | total loss  1.4068 | ms/batch 25717.98 |
+| step   479 |  lr: 0.0000192 | total loss  1.4080 | ms/batch 24408.96 |
+dev_acc 0.25157232704402516
+test_acc 0.27258444619010214
+-----------------------------------------------------------------------
+| epoch   5 | step   480 | dev_acc  0.2516 | test_acc  0.2726 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [146, 1138, 9609, 1431, 7097, 8703, 6378, 8340, 8561, 7771]
+| step   489 |  lr: 0.0000196 | total loss  1.4032 | ms/batch 26051.88 |
+| step   499 |  lr: 0.0000200 | total loss  1.3964 | ms/batch 26092.24 |
+| step   509 |  lr: 0.0000199 | total loss  1.4064 | ms/batch 25976.65 |
+| step   519 |  lr: 0.0000198 | total loss  1.4113 | ms/batch 25949.86 |
+| step   529 |  lr: 0.0000197 | total loss  1.4017 | ms/batch 25697.87 |
+| step   539 |  lr: 0.0000196 | total loss  1.4062 | ms/batch 26092.28 |
+| step   549 |  lr: 0.0000195 | total loss  1.4070 | ms/batch 26008.47 |
+| step   559 |  lr: 0.0000194 | total loss  1.4085 | ms/batch 24724.61 |
+dev_acc 0.23349056603773585
+test_acc 0.24666142969363708
+-----------------------------------------------------------------------
+| epoch   6 | step   560 | dev_acc  0.2335 | test_acc  0.2467 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [6276, 439, 5054, 5249, 2063, 7780, 4845, 5603, 6954, 7538]
+| step   569 |  lr: 0.0000193 | total loss  1.4073 | ms/batch 26018.56 |
+| step   579 |  lr: 0.0000192 | total loss  1.4192 | ms/batch 26002.42 |
+| step   589 |  lr: 0.0000190 | total loss  1.4025 | ms/batch 26046.80 |
+| step   599 |  lr: 0.0000189 | total loss  1.3981 | ms/batch 26053.55 |
+| step   609 |  lr: 0.0000188 | total loss  1.4069 | ms/batch 26047.08 |
+| step   619 |  lr: 0.0000187 | total loss  1.4097 | ms/batch 26066.65 |
+| step   629 |  lr: 0.0000186 | total loss  1.3931 | ms/batch 26044.77 |
+| step   639 |  lr: 0.0000185 | total loss  1.4034 | ms/batch 24792.55 |
+dev_acc 0.26022012578616355
+test_acc 0.23723487824037706
+-----------------------------------------------------------------------
+| epoch   7 | step   640 | dev_acc  0.2602 | test_acc  0.2372 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [3657, 930, 1667, 7784, 4993, 9040, 5310, 3615, 4837, 7630]
+| step   649 |  lr: 0.0000184 | total loss  1.4014 | ms/batch 26097.13 |
+| step   659 |  lr: 0.0000183 | total loss  1.4055 | ms/batch 26133.63 |
+| step   669 |  lr: 0.0000182 | total loss  1.3880 | ms/batch 26114.99 |
+| step   679 |  lr: 0.0000181 | total loss  1.4127 | ms/batch 26139.20 |
+| step   689 |  lr: 0.0000180 | total loss  1.3965 | ms/batch 26069.55 |
+| step   699 |  lr: 0.0000179 | total loss  1.3957 | ms/batch 26115.35 |
+| step   709 |  lr: 0.0000178 | total loss  1.4005 | ms/batch 26065.87 |
+| step   719 |  lr: 0.0000177 | total loss  1.4043 | ms/batch 24851.78 |
+dev_acc 0.26022012578616355
+test_acc 0.25058915946582877
+-----------------------------------------------------------------------
+| epoch   8 | step   720 | dev_acc  0.2602 | test_acc  0.2506 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [8977, 5704, 6614, 6931, 4417, 3737, 10077, 8580, 6179, 5517]
+| step   729 |  lr: 0.0000176 | total loss  1.4009 | ms/batch 26105.82 |
+| step   739 |  lr: 0.0000175 | total loss  1.4025 | ms/batch 26096.56 |
+| step   749 |  lr: 0.0000173 | total loss  1.3979 | ms/batch 26119.34 |
+| step   759 |  lr: 0.0000172 | total loss  1.3995 | ms/batch 26133.65 |
+| step   769 |  lr: 0.0000171 | total loss  1.4062 | ms/batch 26127.04 |
+| step   779 |  lr: 0.0000170 | total loss  1.4037 | ms/batch 26373.30 |
+| step   789 |  lr: 0.0000169 | total loss  1.3966 | ms/batch 26326.69 |
+| step   799 |  lr: 0.0000168 | total loss  1.3978 | ms/batch 25080.95 |
+dev_acc 0.2389937106918239
+test_acc 0.24273369992144542
+-----------------------------------------------------------------------
+| epoch   9 | step   800 | dev_acc  0.2390 | test_acc  0.2427 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [5188, 9508, 4384, 7556, 2430, 2198, 4327, 4483, 213, 7744]
+| step   809 |  lr: 0.0000167 | total loss  1.4063 | ms/batch 26279.43 |
+| step   819 |  lr: 0.0000166 | total loss  1.3973 | ms/batch 26401.12 |
+| step   829 |  lr: 0.0000165 | total loss  1.3913 | ms/batch 26420.53 |
+| step   839 |  lr: 0.0000164 | total loss  1.3981 | ms/batch 26350.69 |
+| step   849 |  lr: 0.0000163 | total loss  1.4037 | ms/batch 26342.43 |
+| step   859 |  lr: 0.0000162 | total loss  1.3928 | ms/batch 26382.98 |
+| step   869 |  lr: 0.0000161 | total loss  1.4005 | ms/batch 26222.10 |
+| step   879 |  lr: 0.0000160 | total loss  1.3946 | ms/batch 24938.11 |
+dev_acc 0.24528301886792453
+test_acc 0.24194815396700706
+-----------------------------------------------------------------------
+| epoch  10 | step   880 | dev_acc  0.2453 | test_acc  0.2419 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [3829, 3886, 5501, 7364, 4184, 6253, 7438, 4835, 5910, 9142]
+| step   889 |  lr: 0.0000159 | total loss  1.3897 | ms/batch 26202.94 |
+| step   899 |  lr: 0.0000158 | total loss  1.4014 | ms/batch 26155.20 |
+| step   909 |  lr: 0.0000156 | total loss  1.3956 | ms/batch 26125.68 |
+| step   919 |  lr: 0.0000155 | total loss  1.4002 | ms/batch 26048.56 |
+| step   929 |  lr: 0.0000154 | total loss  1.3955 | ms/batch 26054.63 |
+| step   939 |  lr: 0.0000153 | total loss  1.3961 | ms/batch 26110.79 |
+| step   949 |  lr: 0.0000152 | total loss  1.3998 | ms/batch 26057.07 |
+| step   959 |  lr: 0.0000151 | total loss  1.3946 | ms/batch 24838.87 |
+dev_acc 0.26022012578616355
+test_acc 0.2608012568735271
+-----------------------------------------------------------------------
+| epoch  11 | step   960 | dev_acc  0.2602 | test_acc  0.2608 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [4449, 2481, 6745, 5371, 6376, 4235, 245, 6690, 9932, 7560]
+| step   969 |  lr: 0.0000150 | total loss  1.4023 | ms/batch 25946.45 |
+| step   979 |  lr: 0.0000149 | total loss  1.3980 | ms/batch 25955.36 |
+| step   989 |  lr: 0.0000148 | total loss  1.4013 | ms/batch 25997.89 |
+| step   999 |  lr: 0.0000147 | total loss  1.3860 | ms/batch 25932.30 |
+| step  1009 |  lr: 0.0000146 | total loss  1.4023 | ms/batch 26011.30 |
+| step  1019 |  lr: 0.0000145 | total loss  1.3933 | ms/batch 26129.93 |
+| step  1029 |  lr: 0.0000144 | total loss  1.3984 | ms/batch 26128.39 |
+| step  1039 |  lr: 0.0000143 | total loss  1.3950 | ms/batch 24910.22 |
+dev_acc 0.2806603773584906
+test_acc 0.25687352710133543
+-----------------------------------------------------------------------
+| epoch  12 | step  1040 | dev_acc  0.2807 | test_acc  0.2569 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [3238, 6529, 2051, 6430, 4075, 5435, 7036, 5453, 8683, 1425]
+| step  1049 |  lr: 0.0000142 | total loss  1.3984 | ms/batch 26243.96 |
+| step  1059 |  lr: 0.0000141 | total loss  1.3982 | ms/batch 26206.00 |
+| step  1069 |  lr: 0.0000140 | total loss  1.4003 | ms/batch 26213.20 |
+| step  1079 |  lr: 0.0000138 | total loss  1.3947 | ms/batch 26205.05 |
+| step  1089 |  lr: 0.0000137 | total loss  1.3973 | ms/batch 26196.43 |
+| step  1099 |  lr: 0.0000136 | total loss  1.3931 | ms/batch 26259.96 |
+| step  1109 |  lr: 0.0000135 | total loss  1.3940 | ms/batch 26231.66 |
+| step  1119 |  lr: 0.0000134 | total loss  1.3942 | ms/batch 24849.67 |
+dev_acc 0.24764150943396226
+test_acc 0.2513747054202671
+-----------------------------------------------------------------------
+| epoch  13 | step  1120 | dev_acc  0.2476 | test_acc  0.2514 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [662, 1550, 541, 3933, 1985, 1458, 4157, 6262, 1741, 4547]
+| step  1129 |  lr: 0.0000133 | total loss  1.3887 | ms/batch 26166.32 |
+| step  1139 |  lr: 0.0000132 | total loss  1.3867 | ms/batch 26113.72 |
+| step  1149 |  lr: 0.0000131 | total loss  1.4003 | ms/batch 26096.18 |
+| step  1159 |  lr: 0.0000130 | total loss  1.3922 | ms/batch 26143.53 |
+| step  1169 |  lr: 0.0000129 | total loss  1.3956 | ms/batch 26139.95 |
+| step  1179 |  lr: 0.0000128 | total loss  1.3852 | ms/batch 26172.24 |
+| step  1189 |  lr: 0.0000127 | total loss  1.3965 | ms/batch 26170.00 |
+| step  1199 |  lr: 0.0000126 | total loss  1.3892 | ms/batch 24974.71 |
+dev_acc 0.25235849056603776
+test_acc 0.2545168892380204
+-----------------------------------------------------------------------
+| epoch  14 | step  1200 | dev_acc  0.2524 | test_acc  0.2545 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [4851, 7823, 4530, 9639, 713, 5282, 1603, 9026, 9179, 2620]
+| step  1209 |  lr: 0.0000125 | total loss  1.3979 | ms/batch 26405.42 |
+| step  1219 |  lr: 0.0000124 | total loss  1.3991 | ms/batch 26328.80 |
+| step  1229 |  lr: 0.0000123 | total loss  1.3971 | ms/batch 26336.68 |
+| step  1239 |  lr: 0.0000121 | total loss  1.3993 | ms/batch 26351.99 |
+| step  1249 |  lr: 0.0000120 | total loss  1.4022 | ms/batch 26360.46 |
+| step  1259 |  lr: 0.0000119 | total loss  1.3996 | ms/batch 26353.21 |
+| step  1269 |  lr: 0.0000118 | total loss  1.3960 | ms/batch 26331.28 |
+| step  1279 |  lr: 0.0000117 | total loss  1.3962 | ms/batch 25136.69 |
+dev_acc 0.2539308176100629
+test_acc 0.24509033778476041
+-----------------------------------------------------------------------
+| epoch  15 | step  1280 | dev_acc  0.2539 | test_acc  0.2451 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [7826, 9476, 9016, 3816, 4303, 2369, 4438, 3046, 5840, 326]
+| step  1289 |  lr: 0.0000116 | total loss  1.3931 | ms/batch 26441.78 |
+| step  1299 |  lr: 0.0000115 | total loss  1.3946 | ms/batch 26391.44 |
+| step  1309 |  lr: 0.0000114 | total loss  1.3969 | ms/batch 26449.76 |
+| step  1319 |  lr: 0.0000113 | total loss  1.3978 | ms/batch 26515.54 |
+| step  1329 |  lr: 0.0000112 | total loss  1.3924 | ms/batch 26519.60 |
+| step  1339 |  lr: 0.0000111 | total loss  1.3937 | ms/batch 26515.43 |
+| step  1349 |  lr: 0.0000110 | total loss  1.3989 | ms/batch 26477.35 |
+| step  1359 |  lr: 0.0000109 | total loss  1.3900 | ms/batch 25260.04 |
+dev_acc 0.2759433962264151
+test_acc 0.24509033778476041
+-----------------------------------------------------------------------
+| epoch  16 | step  1360 | dev_acc  0.2759 | test_acc  0.2451 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [881, 9862, 7294, 1848, 5325, 4578, 5155, 2289, 5841, 5119]
+| step  1369 |  lr: 0.0000108 | total loss  1.3880 | ms/batch 26518.40 |
+| step  1379 |  lr: 0.0000107 | total loss  1.4005 | ms/batch 26492.58 |
+| step  1389 |  lr: 0.0000106 | total loss  1.3946 | ms/batch 26465.43 |
+| step  1399 |  lr: 0.0000105 | total loss  1.3963 | ms/batch 26491.00 |
+| step  1409 |  lr: 0.0000103 | total loss  1.3877 | ms/batch 26472.37 |
+| step  1419 |  lr: 0.0000102 | total loss  1.3852 | ms/batch 26585.20 |
+| step  1429 |  lr: 0.0000101 | total loss  1.3909 | ms/batch 26601.10 |
+| step  1439 |  lr: 0.0000100 | total loss  1.3842 | ms/batch 25338.24 |
+dev_acc 0.25235849056603776
+test_acc 0.25530243519245877
+-----------------------------------------------------------------------
+| epoch  17 | step  1440 | dev_acc  0.2524 | test_acc  0.2553 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [5621, 78, 9407, 5140, 1248, 8066, 2131, 7920, 5307, 465]
+| step  1449 |  lr: 0.0000099 | total loss  1.3970 | ms/batch 26530.79 |
+| step  1459 |  lr: 0.0000098 | total loss  1.3915 | ms/batch 26498.10 |
+| step  1469 |  lr: 0.0000097 | total loss  1.3905 | ms/batch 26581.79 |
+| step  1479 |  lr: 0.0000096 | total loss  1.3878 | ms/batch 26559.92 |
+| step  1489 |  lr: 0.0000095 | total loss  1.3892 | ms/batch 26520.38 |
+| step  1499 |  lr: 0.0000094 | total loss  1.3856 | ms/batch 26508.96 |
+| step  1509 |  lr: 0.0000093 | total loss  1.3950 | ms/batch 26415.51 |
+| step  1519 |  lr: 0.0000092 | total loss  1.3991 | ms/batch 24819.14 |
+dev_acc 0.23742138364779874
+test_acc 0.2631578947368421
+-----------------------------------------------------------------------
+| epoch  18 | step  1520 | dev_acc  0.2374 | test_acc  0.2632 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [1905, 5925, 7845, 4233, 8991, 482, 790, 237, 4792, 7142]
+| step  1529 |  lr: 0.0000091 | total loss  1.3966 | ms/batch 26005.92 |
+| step  1539 |  lr: 0.0000090 | total loss  1.3966 | ms/batch 26050.96 |
+| step  1549 |  lr: 0.0000089 | total loss  1.3934 | ms/batch 26008.22 |
+| step  1559 |  lr: 0.0000088 | total loss  1.3933 | ms/batch 26039.46 |
+| step  1569 |  lr: 0.0000086 | total loss  1.3906 | ms/batch 26051.64 |
+| step  1579 |  lr: 0.0000085 | total loss  1.3909 | ms/batch 26112.09 |
+| step  1589 |  lr: 0.0000084 | total loss  1.3930 | ms/batch 26158.19 |
+| step  1599 |  lr: 0.0000083 | total loss  1.3918 | ms/batch 24930.61 |
+dev_acc 0.23820754716981132
+test_acc 0.25608798114689707
+-----------------------------------------------------------------------
+| epoch  19 | step  1600 | dev_acc  0.2382 | test_acc  0.2561 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [798, 4504, 9941, 9415, 3180, 6703, 3266, 6544, 296, 4465]
+| step  1609 |  lr: 0.0000082 | total loss  1.3981 | ms/batch 26192.17 |
+| step  1619 |  lr: 0.0000081 | total loss  1.3907 | ms/batch 26194.49 |
+| step  1629 |  lr: 0.0000080 | total loss  1.3899 | ms/batch 26238.06 |
+| step  1639 |  lr: 0.0000079 | total loss  1.3927 | ms/batch 26237.98 |
+| step  1649 |  lr: 0.0000078 | total loss  1.3885 | ms/batch 26291.28 |
+| step  1659 |  lr: 0.0000077 | total loss  1.3965 | ms/batch 26269.73 |
+| step  1669 |  lr: 0.0000076 | total loss  1.3929 | ms/batch 26244.34 |
+| step  1679 |  lr: 0.0000075 | total loss  1.3911 | ms/batch 25006.34 |
+dev_acc 0.2617924528301887
+test_acc 0.2623723487824038
+-----------------------------------------------------------------------
+| epoch  20 | step  1680 | dev_acc  0.2618 | test_acc  0.2624 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [7144, 2496, 8197, 590, 9872, 9535, 6264, 9269, 8380, 4810]
+| step  1689 |  lr: 0.0000074 | total loss  1.3908 | ms/batch 26317.22 |
+| step  1699 |  lr: 0.0000073 | total loss  1.3931 | ms/batch 26244.98 |
+| step  1709 |  lr: 0.0000072 | total loss  1.3935 | ms/batch 26277.21 |
+| step  1719 |  lr: 0.0000071 | total loss  1.3886 | ms/batch 26290.05 |
+| step  1729 |  lr: 0.0000069 | total loss  1.3931 | ms/batch 26216.35 |
+| step  1739 |  lr: 0.0000068 | total loss  1.3935 | ms/batch 26275.42 |
+| step  1749 |  lr: 0.0000067 | total loss  1.3918 | ms/batch 26250.01 |
+| step  1759 |  lr: 0.0000066 | total loss  1.3965 | ms/batch 25014.44 |
+dev_acc 0.25943396226415094
+test_acc 0.2615868028279654
+-----------------------------------------------------------------------
+| epoch  21 | step  1760 | dev_acc  0.2594 | test_acc  0.2616 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [7895, 333, 4626, 7493, 7643, 194, 7312, 9473, 4738, 5019]
+| step  1769 |  lr: 0.0000065 | total loss  1.3932 | ms/batch 26207.54 |
+| step  1779 |  lr: 0.0000064 | total loss  1.3869 | ms/batch 26229.95 |
+| step  1789 |  lr: 0.0000063 | total loss  1.3880 | ms/batch 26228.18 |
+| step  1799 |  lr: 0.0000062 | total loss  1.3956 | ms/batch 26240.04 |
+| step  1809 |  lr: 0.0000061 | total loss  1.3920 | ms/batch 26236.91 |
+| step  1819 |  lr: 0.0000060 | total loss  1.3939 | ms/batch 26245.93 |
+| step  1829 |  lr: 0.0000059 | total loss  1.3944 | ms/batch 26272.92 |
+| step  1839 |  lr: 0.0000058 | total loss  1.3954 | ms/batch 24954.10 |
+dev_acc 0.27358490566037735
+test_acc 0.25058915946582877
+-----------------------------------------------------------------------
+| epoch  22 | step  1840 | dev_acc  0.2736 | test_acc  0.2506 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [4924, 6699, 1492, 1707, 110, 1412, 9019, 9542, 720, 8368]
+| step  1849 |  lr: 0.0000057 | total loss  1.3852 | ms/batch 26207.30 |
+| step  1859 |  lr: 0.0000056 | total loss  1.3939 | ms/batch 26319.57 |
+| step  1869 |  lr: 0.0000055 | total loss  1.3936 | ms/batch 26377.43 |
+| step  1879 |  lr: 0.0000054 | total loss  1.3867 | ms/batch 26354.55 |
+| step  1889 |  lr: 0.0000053 | total loss  1.3931 | ms/batch 26312.54 |
+| step  1899 |  lr: 0.0000051 | total loss  1.3912 | ms/batch 26316.76 |
+| step  1909 |  lr: 0.0000050 | total loss  1.3809 | ms/batch 26330.72 |
+| step  1919 |  lr: 0.0000049 | total loss  1.3881 | ms/batch 25060.15 |
+dev_acc 0.2641509433962264
+test_acc 0.25608798114689707
+-----------------------------------------------------------------------
+| epoch  23 | step  1920 | dev_acc  0.2642 | test_acc  0.2561 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [9683, 9568, 2758, 2449, 8168, 4748, 7516, 2950, 8561, 4811]
+| step  1929 |  lr: 0.0000048 | total loss  1.3935 | ms/batch 26318.57 |
+| step  1939 |  lr: 0.0000047 | total loss  1.3898 | ms/batch 26348.24 |
+| step  1949 |  lr: 0.0000046 | total loss  1.3951 | ms/batch 26350.08 |
+| step  1959 |  lr: 0.0000045 | total loss  1.3851 | ms/batch 26311.10 |
+| step  1969 |  lr: 0.0000044 | total loss  1.3874 | ms/batch 25980.47 |
+| step  1979 |  lr: 0.0000043 | total loss  1.3888 | ms/batch 25931.43 |
+| step  1989 |  lr: 0.0000042 | total loss  1.3907 | ms/batch 25920.70 |
+| step  1999 |  lr: 0.0000041 | total loss  1.3868 | ms/batch 24693.99 |
+dev_acc 0.25235849056603776
+test_acc 0.2670856245090338
+-----------------------------------------------------------------------
+| epoch  24 | step  2000 | dev_acc  0.2524 | test_acc  0.2671 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [1133, 9749, 247, 2237, 7229, 9502, 3806, 5376, 1265, 5149]
+| step  2009 |  lr: 0.0000040 | total loss  1.3865 | ms/batch 25899.68 |
+| step  2019 |  lr: 0.0000039 | total loss  1.3888 | ms/batch 25940.92 |
+| step  2029 |  lr: 0.0000038 | total loss  1.3936 | ms/batch 25926.69 |
+| step  2039 |  lr: 0.0000037 | total loss  1.3894 | ms/batch 25948.11 |
+| step  2049 |  lr: 0.0000036 | total loss  1.3890 | ms/batch 25891.88 |
+| step  2059 |  lr: 0.0000034 | total loss  1.3889 | ms/batch 25899.45 |
+| step  2069 |  lr: 0.0000033 | total loss  1.3865 | ms/batch 25932.46 |
+| step  2079 |  lr: 0.0000032 | total loss  1.3827 | ms/batch 24689.09 |
+dev_acc 0.26022012578616355
+test_acc 0.2702278083267871
+-----------------------------------------------------------------------
+| epoch  25 | step  2080 | dev_acc  0.2602 | test_acc  0.2702 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [1868, 5086, 3523, 5935, 3897, 7612, 2438, 4859, 7454, 4875]
+| step  2089 |  lr: 0.0000031 | total loss  1.3866 | ms/batch 25929.21 |
+| step  2099 |  lr: 0.0000030 | total loss  1.3860 | ms/batch 25926.21 |
+| step  2109 |  lr: 0.0000029 | total loss  1.3925 | ms/batch 25956.89 |
+| step  2119 |  lr: 0.0000028 | total loss  1.3944 | ms/batch 25941.88 |
+| step  2129 |  lr: 0.0000027 | total loss  1.3854 | ms/batch 25910.04 |
+| step  2139 |  lr: 0.0000026 | total loss  1.3867 | ms/batch 25909.94 |
+| step  2149 |  lr: 0.0000025 | total loss  1.3859 | ms/batch 25913.27 |
+| step  2159 |  lr: 0.0000024 | total loss  1.3826 | ms/batch 24674.29 |
+dev_acc 0.2641509433962264
+test_acc 0.2584446190102121
+-----------------------------------------------------------------------
+| epoch  26 | step  2160 | dev_acc  0.2642 | test_acc  0.2584 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [1790, 4027, 6563, 1287, 8453, 9538, 9510, 4857, 4898, 4628]
+| step  2169 |  lr: 0.0000023 | total loss  1.3916 | ms/batch 25933.23 |
+| step  2179 |  lr: 0.0000022 | total loss  1.3875 | ms/batch 25892.62 |
+| step  2189 |  lr: 0.0000021 | total loss  1.3843 | ms/batch 25856.53 |
+| step  2199 |  lr: 0.0000020 | total loss  1.3853 | ms/batch 25903.25 |
+| step  2209 |  lr: 0.0000019 | total loss  1.3885 | ms/batch 25948.66 |
+| step  2219 |  lr: 0.0000018 | total loss  1.3854 | ms/batch 25948.42 |
+| step  2229 |  lr: 0.0000016 | total loss  1.3821 | ms/batch 25984.09 |
+| step  2239 |  lr: 0.0000015 | total loss  1.3845 | ms/batch 24683.25 |
+dev_acc 0.2555031446540881
+test_acc 0.24823252160251374
+-----------------------------------------------------------------------
+| epoch  27 | step  2240 | dev_acc  0.2555 | test_acc  0.2482 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [3861, 2423, 315, 1272, 531, 3407, 5179, 7511, 9781, 4084]
+| step  2249 |  lr: 0.0000014 | total loss  1.3904 | ms/batch 25922.41 |
+| step  2259 |  lr: 0.0000013 | total loss  1.3876 | ms/batch 25940.22 |
+| step  2269 |  lr: 0.0000012 | total loss  1.3886 | ms/batch 25930.52 |
+| step  2279 |  lr: 0.0000011 | total loss  1.3847 | ms/batch 25907.09 |
+| step  2289 |  lr: 0.0000010 | total loss  1.3843 | ms/batch 25939.65 |
+| step  2299 |  lr: 0.0000009 | total loss  1.3863 | ms/batch 25972.80 |
+| step  2309 |  lr: 0.0000008 | total loss  1.3873 | ms/batch 25964.45 |
+| step  2319 |  lr: 0.0000007 | total loss  1.3911 | ms/batch 24729.43 |
+dev_acc 0.25235849056603776
+test_acc 0.25687352710133543
+-----------------------------------------------------------------------
+| epoch  28 | step  2320 | dev_acc  0.2524 | test_acc  0.2569 |
+-----------------------------------------------------------------------
+local_rank -1 len(train_indexes) 10178 train_indexes[:10] [8520, 7607, 6137, 8734, 1668, 9896, 1957, 5618, 7751, 2371]
+| step  2329 |  lr: 0.0000006 | total loss  1.3868 | ms/batch 25999.70 |
+| step  2339 |  lr: 0.0000005 | total loss  1.3863 | ms/batch 25927.58 |
+| step  2349 |  lr: 0.0000004 | total loss  1.3910 | ms/batch 25941.22 |
+| step  2359 |  lr: 0.0000003 | total loss  1.3887 | ms/batch 25929.29 |
+| step  2369 |  lr: 0.0000002 | total loss  1.3821 | ms/batch 25925.35 |
+| step  2379 |  lr: 0.0000001 | total loss  1.3870 | ms/batch 25889.00 |
+| step  2389 |  lr: 0.0000000 | total loss  1.3791 | ms/batch 25660.21 |
+| step  2399 |  lr: 0.0000000 | total loss  1.3813 | ms/batch 24238.13 |
+dev_acc 0.2507861635220126
+test_acc 0.25765907305577374
+-----------------------------------------------------------------------
+| epoch  29 | step  2400 | dev_acc  0.2508 | test_acc  0.2577 |
+-----------------------------------------------------------------------
